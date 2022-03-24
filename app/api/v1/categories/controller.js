@@ -4,7 +4,6 @@ const CustomError = require('../../../errors')
 
 const getAllCategory = async (req, res, next) => {
   try {
-    console.log(req)
     const result = await Category.find({ user: req.user.id })
 
     res.status(StatusCodes.OK).json({ data: result })
@@ -30,8 +29,11 @@ const getOneCategory = async (req, res, next) => {
   try {
     console.log(req.params)
     const { id } = req.params
+    const user = req.user.id
+
     const result = await Category.findOne({
-      _id: id
+      _id: id,
+      user
     })
 
     if (!result) {

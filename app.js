@@ -6,6 +6,8 @@ const logger = require('morgan');
 const usersRouter = require('./app/api/v1/users/router');
 const authRouter = require('./app/api/v1/auth/router');
 const categoryRouter = require('./app/api/v1/categories/router');
+const speakerRouter = require('./app/api/v1/speakers/router');
+const eventRouter = require('./app/api/v1/events/router');
 
 // middleware
 const notFoundMiddleware = require('./app/middlewares/not-found');
@@ -24,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(`${versionV1}`, usersRouter);
 app.use(`${versionV1}/auth`, authRouter);
 app.use(`${versionV1}/categories`, categoryRouter);
+app.use(`${versionV1}/speakers`, speakerRouter);
+app.use(`${versionV1}/events`, eventRouter);
 
 app.use(notFoundMiddleware);
 app.use(handleErrorMiddleware);
